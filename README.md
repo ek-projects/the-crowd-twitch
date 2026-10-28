@@ -50,3 +50,7 @@ A 60-second round now resolves into one of three endings driven by trust and fea
 ## Current limitations
 
 The avatar shown is generated within the demo, not an actual human streamer. Browser instances keep independent creature state; the canonical experience is intended to be displayed by one broadcaster and watched through the Twitch stream. No persistent game-room database, automatic OAuth refresh or production-scale viewer aggregation exists yet. Do not use this as a production Twitch service without further security and reliability work.
+
+## Hackathon entry
+
+See DEVPOST_SUBMISSION.md for the complete draft and outstanding requirements, and DEMO_VIDEO_SCRIPT.md for the three-minute video storyboard. These documents are not evidence that live Twitch footage exists or the competition entry is final.
