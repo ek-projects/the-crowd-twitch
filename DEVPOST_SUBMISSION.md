@@ -11,7 +11,7 @@ Status: DRAFT, not submitted.
 
 - 29286 Submitter Type: Individual
 - 29287 Submitter Country of Residence: Italy
-- 29288 Code repository URL: BLOCKED, GitHub CLI authorization invalid and connected GitHub tool cannot create a new repository. Do not link to an unrelated repository.
+- 29288 Code repository URL: https://github.com/ek-projects/the-crowd-twitch (PUBLIC, uploaded and verified).
 - 29289 Codex session ID: 01a1818f-01b5-7591-8657-8173e60b027f.
 - 29290 Technology requirement:
 "We used OpenAI Codex to generate the deterministic gameplay-ending evaluator in crowd-ending.mjs and incorporated it into the 60-second browser game. The archived Codex session ID and code are included. The Twitch integration is a Node.js server bridge using Twitch EventSub WebSockets for channel.chat.message and channel.raid, with user OAuth validation and same-origin SSE events to the canvas scene. Automated tests simulate Twitch events, verify deduplication and subscriptions, and check SSE delivery. Actual-channel connectivity awaits broadcaster authorization; we do not claim live testing."
@@ -23,10 +23,10 @@ Status: DRAFT, not submitted.
 - 29295 Eligible jurisdiction: participant states legal residence in Italy.
 - 29296 Not a sponsor employee: participant declaration REQUIRED.
 - Video URL: REQUIRED. Under 3 min, hosted on public/unlisted YouTube, with actual Twitch functionality and Codex proof. NOT PROVIDED.
-- Website: optional; temporary tunnels are not durable.
+- Website: https://ek-projects.github.io/the-crowd-twitch/ (permanent STATIC simulated demo; does not receive Twitch chat).
 
 ## Blocked actions needed for final submission
-1. Authorize GitHub CLI device login or create a fresh public repo named the-crowd-twitch; do not reuse an unrelated repository. Push this project without the .env file.
+1. DONE: Authorized GitHub, created fresh public repository ek-projects/the-crowd-twitch, pushed source; .env was not included.
 2. Register a Twitch developer application at https://dev.twitch.tv/console/apps. Use the PUBLIC Client ID to launch node twitch-login.mjs CLIENT_ID. Log in and authorize on your own Twitch browser, never paste access tokens.
 3. Record actual Twitch interaction, then upload a <=179-second demo to YouTube. DEMO_VIDEO_SCRIPT.md contains storyboard and narration.
 4. Supply subjective survey answers and confirm employer eligibility, then submit the draft. A draft is not an entry.

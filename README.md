@@ -54,3 +54,11 @@ The avatar shown is generated within the demo, not an actual human streamer. Bro
 ## Hackathon entry
 
 See DEVPOST_SUBMISSION.md for the complete draft and outstanding requirements, and DEMO_VIDEO_SCRIPT.md for the three-minute video storyboard. These documents are not evidence that live Twitch footage exists or the competition entry is final.
+
+## Online preview and source
+
+- Stable simulated demo: https://ek-projects.github.io/the-crowd-twitch/
+- Public source repository: https://github.com/ek-projects/the-crowd-twitch
+- Devpost project (DRAFT, not submitted): https://devpost.com/software/the-crowd-the-chat-is-the-monster
+
+The GitHub Pages site is STATIC and necessarily shows simulated viewers. It does not run the Node EventSub bridge. Run the Node server after Twitch authorization for real chat; do not claim Github Pages demonstrates Twitch integration.
