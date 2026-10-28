@@ -4,7 +4,7 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
 import {dirname,join,resolve} from 'node:path';
 import {createTwitchBridge} from './twitch.mjs';
 const root=dirname(fileURLToPath(import.meta.url));
-const assets=new Map([['/','index.html'],['/index.html','index.html'],['/download/the-crowd-v0.3.zip','THE_CROWD_v0.3.zip']]);
+const assets=new Map([['/','index.html'],['/index.html','index.html'],['/download/the-crowd-v0.3.zip','THE_CROWD_v0.3.zip'],['/download/hackathon-bundle.zip','THE_CROWD_HACKATHON_v0.3.zip']]);
 export function createDemoServer({host=process.env.HOST||'127.0.0.1',port=Number(process.env.PORT||3107),env=process.env,bridgeFactory=createTwitchBridge}={}){
  if(!Number.isInteger(port)||port<0||port>65535)throw RangeError('Invalid port');
  const clients=new Set();
