@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#090d17">
+<title>THE CROWD — La chat è il mostro</title>
+<style>
+:root{--bg:#080b14;--ink:#eff5ff;--muted:#92a1b8;--edge:rgba(165,190,240,.14);--cyan:#9cfff1;--rose:#ff8ba9;--amber:#ffc587}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 65% -20%,#28334c 0%,#111729 35%,var(--bg) 85%);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+.wrap{max-width:1280px;padding:0 26px 40px;margin:auto}
+header{height:93px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid var(--edge)}
+.brand{display:flex;align-items:center;gap:14px}.glyph{width:46px;height:46px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,#223e4b,#20203a);border:1px solid #4b8792;box-shadow:0 0 22px #7df8e320;color:var(--cyan);font-size:30px;font-weight:750;line-height:1}
+.brandname{font-size:22px;font-weight:900;letter-spacing:.15em;line-height:1}.brandname small{display:block;margin-top:9px;font-size:9px;font-weight:650;letter-spacing:.24em;color:#9aaec5}
+.topright{display:flex;gap:10px;align-items:center;font-size:10px;font-weight:800;letter-spacing:.12em}.pill{padding:9px 12px;border:1px solid #aa9f6f67;border-radius:99px;color:var(--amber);white-space:nowrap;background:#242235}.pill .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#ffca87;margin-right:7px}
+.intro{padding:28px 0 25px;display:flex;align-items:end;justify-content:space-between;gap:18px}.eyebrow{color:var(--cyan);letter-spacing:.19em;font-size:11px;font-weight:800}
+h1{font-size:clamp(36px,4.9vw,72px);font-weight:900;letter-spacing:-.064em;margin:8px 0 8px;line-height:1.06}h1 em{font-style:normal;color:var(--cyan)}
+.intro p{color:#b8c6d7;font-size:clamp(14px,1.2vw,18px);max-width:670px;margin:0;line-height:1.55}
+.stamp{border-left:1px solid #50678475;padding-left:18px;color:#9cb0ca;font-size:11px;line-height:1.9;white-space:nowrap}
+.stamp strong{color:#f1f5ff;font-size:14px}
+.stagewrap{border:1px solid #54718f80;border-radius:17px;overflow:hidden;position:relative;background:#060c18;box-shadow:0 26px 80px #0009,0 0 100px #a4ffdc0a;isolation:isolate}
+.stagewrap canvas{display:block;width:100%;height:auto;aspect-ratio:1100/580;touch-action:none;cursor:crosshair}
+.stagehdr{position:absolute;left:16px;right:16px;top:15px;display:flex;justify-content:space-between;align-items:center;gap:14px;pointer-events:none;z-index:2;font:800 11px/1.2 ui-monospace,SFMono-Regular,monospace;letter-spacing:.13em;text-shadow:0 2px 8px black}
+.stagehdr span:last-child{color:#d2f9ef}.livebar{display:flex;gap:7px;align-items:center}
+.beat{width:9px;height:9px;border-radius:50%;background:#9cfff1;box-shadow:0 0 18px #a0fff1}
+.stagecaption{position:absolute;bottom:0;left:0;right:0;pointer-events:none;padding:48px 22px 18px;background:linear-gradient(0deg,#050b16ef,#06101d00);text-shadow:0 2px 15px #050810;z-index:2;display:flex;justify-content:space-between;gap:15px;align-items:end}
+.stagecaption strong{font-size:clamp(18px,2.2vw,33px);letter-spacing:-.03em;line-height:1.15;display:block}
+.stagecaption p{color:#bdd5e1;margin:7px 0 0;font-size:12px}
+.stagecaption .chapter{font-size:11px;color:var(--cyan);font-weight:800;white-space:nowrap}
+.mainrow{display:grid;grid-template-columns:minmax(0,1.9fr) minmax(265px,1fr);gap:15px;margin-top:16px}
+.module{background:linear-gradient(145deg,#172036ec,#101727f7);border:1px solid var(--edge);border-radius:15px;padding:22px;min-width:0}
+.module h2{font-size:16px;letter-spacing:-.02em;margin:0 0 12px}
+.kicker{color:var(--cyan);font-size:10px;letter-spacing:.16em;font-weight:800;margin-bottom:8px}
+.chatbox{min-height:190px;max-height:210px;overflow:auto;display:flex;flex-direction:column;gap:8px;padding:4px 2px 10px;scrollbar-width:thin;scrollbar-color:#536983 transparent}
+.message{padding:9px 11px;border-radius:9px;background:#1b2940;border:1px solid #52637a25;font-size:12px;line-height:1.5;animation:enter .23s ease-out}
+.message strong{color:#99eeff;margin-right:8px}.message i{font-style:normal;color:#c9d6e7}.message.special{border-color:#5b88a286;background:#17323c}.message.special strong{color:#adffe8}
+.message.user{background:#243342;border-color:#9cfff173}
+.controls{display:flex;gap:10px;margin-top:12px}
+.chat-input{flex:1;min-width:0;background:#0a1425;border:1px solid #576b835e;border-radius:10px;padding:14px;color:white;font-size:14px}
+.chat-input::placeholder{color:#7d92ae}
+.send{background:var(--cyan);color:#0e2731;font-weight:900;padding:0 22px;border:0;border-radius:10px}
+.underform{color:#8ea3ba;font-size:11px;margin-top:10px}
+.body-status{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:19px}
+.number{font-size:clamp(25px,2.3vw,37px);font-weight:900;letter-spacing:-.07em}
+.mini{display:block;margin-top:1px;font-size:10px;letter-spacing:.09em;color:#99aabc}
+.meterrow{display:flex;align-items:center;justify-content:space-between;margin:11px 0 5px;font-size:12px;color:#bed0e0}
+.bar{height:8px;background:#263550;border-radius:7px;overflow:hidden}.fill{width:16%;height:100%;background:linear-gradient(90deg,#488d99,#b0fff4);border-radius:7px;transition:width .35s}.fill.fear{background:linear-gradient(90deg,#86455c,#ff97ad)}
+.mood{padding:12px 15px;margin:20px 0 12px;border-radius:10px;background:#172c34;color:#b4ffe8;font-size:13px;border:1px solid #73d4c449;min-height:46px}
+.toolrow{display:flex;gap:9px;flex-wrap:wrap}
+.toolrow button{border:1px solid #6f809677;background:#253047;color:#f4f7fc;border-radius:9px;padding:12px 14px;font-size:12px;font-weight:800;min-height:43px}
+.toolrow #raid{background:#34273e;border-color:#ac7398;color:#ffbcd7}
+.toolrow button:hover{filter:brightness(1.25)}
+.help{display:flex;justify-content:space-between;gap:20px;padding:18px 0 4px;color:#99aac2;font-size:12px;line-height:1.6}
+.help strong{color:#fff}.help span:last-child{text-align:right}
+footer{border-top:1px solid var(--edge);padding-top:18px;margin-top:24px;color:#7f92ae;font-size:11px;line-height:1.55}
+kbd{font-family:inherit;background:#344157;border-radius:4px;padding:2px 6px;color:#f3f8fe}
+@keyframes enter{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:850px){.mainrow{grid-template-columns:1fr}.stamp{display:none}.stagewrap canvas{aspect-ratio:1100/690;object-fit:cover}.module{padding:18px}.intro{padding:24px 0 20px}}
+@media(max-width:520px){.wrap{padding:0 12px 30px}header{height:77px}.brandname{font-size:16px;letter-spacing:.1em}.brandname small{letter-spacing:.09em;font-size:8px}.glyph{height:40px;width:40px;font-size:25px}.pill{font-size:8px;padding:7px}.intro{padding:20px 4px}h1{font-size:38px}.intro p{font-size:13px}.stagehdr{font-size:8px;top:12px;left:10px;right:10px}.stagewrap{border-radius:12px}.stagewrap canvas{aspect-ratio:1100/750}.stagecaption{padding:38px 12px 12px}.stagecaption strong{font-size:17px}.stagecaption p{font-size:10px}.stagecaption .chapter{font-size:8px}.controls{gap:6px}.send{padding:0 14px}.help{flex-direction:column;gap:6px}.help span:last-child{text-align:left}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="brand"><div class="glyph">◉</div><div class="brandname">THE CROWD<small>YOU ARE THE CREATURE</small></div></div><div class="topright"><span class="pill" id="sourceStatus"><span class="dot"></span> DEMO · NON TWITCH LIVE</span></div></header>
+<section class="intro"><div><div class="eyebrow">UN ESPERIMENTO SOCIALE GIOCABILE</div><h1>La chat <em>è il mostro.</em></h1><p>Ogni spettatore è una cellula. Ogni messaggio cambia la creatura. Lo streamer non sa se il suo pubblico lo salverà… o lo divorerà.</p></div><div class="stamp">EPISODIO 01<br><strong>La città che ascolta</strong><br>Esperienza interattiva · senza download</div></section>
+<div class="stagewrap"><div class="stagehdr"><span class="livebar"><span class="beat"></span> CAMERA SIMULATA / MESSAGGI LIVE OPZIONALI</span><span id="timer">00:00 / 01:00</span></div><canvas id="world" width="1100" height="580" aria-label="Una città buia, un esploratore e una creatura vivente formata dai messaggi degli spettatori. Tocca la scena per attirarne lo sguardo."></canvas><div class="stagecaption"><div><strong id="headline">C'è qualcosa dietro quelle finestre.</strong><p id="caption">Aspetta che gli spettatori si riuniscano… oppure scrivi subito un messaggio.</p></div><span class="chapter" id="stateTag">SENTENZA SOSPESA</span></div></div>
+<div class="mainrow">
+<section class="module"><div class="kicker">01 / DAI UNA VOCE ALLA CREATURA</div><h2>Scrivi come se stessi parlando allo streamer.</h2><div class="chatbox" id="chatbox" role="log" aria-live="polite"></div><form class="controls" id="chatForm"><input class="chat-input" id="chatInput" maxlength="160" autocomplete="off" aria-label="Messaggio della chat" placeholder="Es. Proteggilo! · Attaccalo! · Ciao, chi sei?"><button class="send" type="submit">INVIA ↗</button></form><div class="underform">Prova parole normali, non comandi. Tocca anche il mostro nella scena.</div></section>
+<aside class="module"><div class="kicker">02 / UN SOLO CORPO, TANTE VOLONTÀ</div><div class="body-status"><div><div class="number" id="count">32</div><span class="mini">PRESENZE NEL CORPO</span></div><div><div class="number" id="intent">?</div><span class="mini">INTENZIONE COLLETTIVA</span></div></div><div class="meterrow"><span>Fiducia</span><strong id="trustLabel">22%</strong></div><div class="bar"><div class="fill" id="trustFill"></div></div><div class="meterrow"><span>Paura / aggressività</span><strong id="fearLabel">18%</strong></div><div class="bar"><div class="fill fear" id="fearFill"></div></div><div class="mood" id="mood">La creatura si sta svegliando…</div><div class="toolrow"><button id="raid" type="button">⚡ SIMULA UN RAID +150</button><button id="autoplay" type="button">Ⅱ Ferma i figuranti</button><button id="reset" type="button">↺ Ricomincia</button></div></aside>
+</div>
+<div class="help"><span><strong>La parte sorprendente:</strong> anche un messaggio innocuo modifica il corpo e attira lo sguardo del mostro. I messaggi protettivi e aggressivi ne cambiano il comportamento.</span><span><strong>Modalità di prova:</strong> spettatori e raid simulati.<br>Il collegamento reale è indicato in alto quando Twitch è autorizzato.</span></div>
+<footer>THE CROWD · Prototipo esplorativo. Nessuna raccolta di dati personali, chat locale nel browser. Questo esperimento non equivale a un'integrazione Twitch già funzionante.</footer>
+</div>
+<script>
+(function(){
+'use strict';
+function evaluateCrowdEnding({ trust, fear, presences } = {}) {
+  // Trust and fear use a 0–100 scale; presences counts nearby entities.
+  for (const [name, value] of Object.entries({ trust, fear })) {
+    if (typeof value !== 'number' || !Number.isFinite(value)) {
+      throw new TypeError(name + ' must be a finite number.');
+    }
+    if (value < 0 || value > 100) {
+      throw new RangeError(name + ' must be between 0 and 100.');
+    }
+  }
+  if (!Number.isSafeInteger(presences) || presences < 0) {
+    throw new RangeError('presences must be a nonnegative safe integer.');
+  }
+
+  // High means at least 60. A strict lead wins; ties remain ambiguous.
+  const company = presences === 0
+    ? 'The empty room carries its promise.'
+    : presences === 1
+      ? 'One presence remains beside you.'
+      : presences + ' presences remain beside you.';
+
+  if (trust >= 60 && trust > fear) {
+    return {
+      phase: 'guardian',
+      title: 'The Crowd Keeps Watch',
+      description: 'You turn your back on the doorway, and nothing follows. The crowd closes around the dark to give you room to leave. ' + company,
+      visual: 'Warm gold silhouettes face outward, forming a protective circle around an open doorway.'
+    };
+  }
+
+  if (fear >= 60 && fear > trust) {
+    return {
+      phase: 'predator',
+      title: 'The Crowd Learns Hunger',
+      description: 'You run. Every footstep teaches the crowd your rhythm. At the final doorway, it arrives before you. ' + company,
+      visual: 'Crimson silhouettes lean inward as their shadows converge across the sealed doorway.'
+    };
+  }
+
+  return {
+    phase: 'witness',
+    title: 'The Crowd Remembers',
+    description: 'You wait for a sign. The crowd waits with you. When the doorway opens, neither side moves first. ' + company,
+    visual: 'Silver silhouettes stand motionless beside a half-open doorway, their reflections facing the viewer.'
+  };
+}
+const canvas=document.getElementById('world'),ctx=canvas.getContext('2d');
+const byId=(s)=>document.getElementById(s);
+const W=1100,H=580,TAU=Math.PI*2;
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+let time=0,last=0,trust=.22,fear=.18,presences=32,mode='curious',intent='?',autoplay=true,autoWait=2.2,lastBeat=0,raidFlash=0,attention={x:740,y:280,until:0},souls=[],ripples=[],sparks=[],score=0,storyBeat=-1;
+let roundFinished=false,roundResult=null;
+const viewerRegistry=new Map();
+const rngSeed=(n)=>{let x=(Math.imul(n+53,1664525)+1013904223)>>>0;return x/4294967295;};
+const rand=(a,b)=>a+Math.random()*(b-a);
+const actors=['OrbitKid','frammento_9','itsLuna','NightShift','neonMoth','theWatcher','Jinx42','Raven','Cat.exe','Echo'];
+const scenarios=[
+ ['OrbitKid','Cosa sono quegli occhi?'],['itsLuna','ciao piccola creatura'],['Raven','proteggilo, è solo!'],
+ ['Jinx42','attaccalo!!'],['NightShift','non fargli male'],['Cat.exe','chi sei davvero?'],
+ ['neonMoth','guardalo, vuole parlarti'],['theWatcher','spaventiamolo!'],['Echo','salvalo adesso']
+];
+const buildings=[
+ {x:-20,w:168,h:269},{x:110,w:168,h:340},{x:255,w:125,h:267},{x:348,w:172,h:378},
+ {x:480,w:155,h:324},{x:592,w:143,h:387},{x:702,w:180,h:359},{x:830,w:156,h:301},{x:967,w:165,h:347}
+];
+function addSoul(i,burst=false){
+ const b=buildings[i%buildings.length];let r=rngSeed(i*19+5),q=rngSeed(i*39+7);
+ const x=b.x+22+r*(b.w-44),y=460-b.h+33+q*(b.h-76);
+ return {x:burst?rand(0,W):x,y:burst?rand(-100,100):y,homeX:x,homeY:y,
+   hue:(i*73)%360,seed:rngSeed(i*331+13)*1000,velocity:rand(.025,.048),size:rand(1.5,3.3)};
+}
+function ensureSouls(n,burst=false){while(souls.length<n)souls.push(addSoul(souls.length,burst));}
+ensureSouls(presences);
+const audienceItem=(name,text)=>{
+ const el=document.createElement('div');el.className='message';
+ const n=document.createElement('strong');n.textContent=name+'  ';
+ const v=document.createElement('i');v.textContent=text;
+ el.append(n,v);let box=byId('chatbox');box.append(el);
+ while(box.childNodes.length>7)box.removeChild(box.firstChild);
+ box.scrollTop=box.scrollHeight;
+};
+function announcer(text){
+ const el=document.createElement('div');el.className='message special';
+ const n=document.createElement('strong');n.textContent='LA CREATURA  ';
+ const v=document.createElement('i');v.textContent=text;el.append(n,v);
+ let box=byId('chatbox');box.append(el);
+ while(box.childNodes.length>7)box.removeChild(box.firstChild);
+ box.scrollTop=box.scrollHeight;
+}
+function sentiment(text) {
+ const t=text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+ if(/protegg|salv|aiuta|abbracc|difend|scudo|amore|bene|gentil|safe|help|save|protect|love|friend|cuid|mos e prek/.test(t))return 'protect';
+ if(/attacc|uccid|spavent|divora|mordi|caccia|paura|kill|hunt|attack|scare|eat|destroy|mbyt/.test(t))return 'hunt';
+ if(/silenz|zitt|fermo|quiet|shh|stop|calm|piano/.test(t))return 'hush';
+ return 'curious';
+}
+function receive(name,text,user=false,viewerId=''){
+ text=String(text||'').trim().slice(0,160);if(!text)return;
+ if(roundFinished){audienceItem(user?'TU':name,text);return;}
+ audienceItem(user?'TU':name,text);score++;
+ const emotion=sentiment(text);
+ if(emotion==='protect'){trust=clamp(trust+.23);fear=clamp(fear-.07);}
+ if(emotion==='hunt'){fear=clamp(fear+.28);trust=clamp(trust-.06);}
+ if(emotion==='curious'){trust=clamp(trust+.065);fear=clamp(fear-.018);}
+ if(emotion==='hush'){trust=clamp(trust+.035);fear=clamp(fear-.075);}
+ presences+=user?11:Math.floor(rand(4,9));ensureSouls(presences,user);
+ const key=String(viewerId||name).toLowerCase().slice(0,72);
+ if(!viewerRegistry.has(key)&&viewerRegistry.size<48){
+   const identity={label:String(name).slice(0,17),soulIndex:Math.max(0,souls.length-1)};
+   viewerRegistry.set(key,identity);
+ }
+
+ mode=trust>fear+.16?'protect':fear>trust+.13?'hunt':'curious';
+ attention={x:mode==='hunt'?245:730,y:260,until:time+2.8};
+ raidFlash=Math.max(raidFlash,.15);
+ ripples.push({x:755,y:268,life:1.2,color:mode==='hunt'?'#ff849f':'#91ffee'});
+ if(user){byId('headline').textContent=emotion==='protect'?'HA CAPITO CHE VUOI AIUTARLO.':emotion==='hunt'?'HA SENTITO LA TUA MINACCIA.':'TI STA GUARDANDO.';byId('caption').textContent='La creatura ha incorporato il tuo messaggio. Guarda il movimento del suo corpo.';}
+ updateHUD();
+}
+function doRaid(viewers=150,source=""){
+ if(roundFinished){announcer('Il destino di questa città è già deciso. Premi Ricomincia per un nuovo capitolo.');return;}
+ const number=Math.min(800,Math.max(1,Math.trunc(Number(viewers)||150)));
+ presences=Math.min(800,presences+number);ensureSouls(presences,true);
+ fear=clamp(fear+.10);trust=clamp(trust+.035);
+ mode=trust>fear+.16?'protect':fear>trust+.13?'hunt':'curious';
+ raidFlash=1;attention={x:730,y:285,until:time+5};
+ for(let i=0;i<8;i++)ripples.push({x:740,y:260,life:.65+i*.12,color:'#baf9f4'});
+ announcer('RAID! '+number+' nuove voci'+(source?' da '+source:'')+'. IL MIO CORPO STA CAMBIANDO.');
+ byId('headline').textContent='QUALCUNO HA PORTATO UN INTERO PUBBLICO.';
+ byId('caption').textContent='Osserva le cellule entrare, le braccia crescere e lo streamer arretrare.';
+ updateHUD();
+}
+function finishRound(){
+ if(roundFinished)return;
+ roundFinished=true;
+ roundResult=evaluateCrowdEnding({trust:Math.round(trust*100),fear:Math.round(fear*100),presences});
+ autoplay=false;
+ byId('autoplay').textContent='▶ Avvia i figuranti';
+ const headlines={
+   guardian:'IL PUBBLICO TI HA SALVATO.',
+   predator:'IL PUBBLICO TI HA TROVATO.',
+   witness:'IL PUBBLICO NON HA DECISO.'
+ };
+ const explanations={
+   guardian:'La creatura è diventata una barriera vivente. Lo streamer riesce a uscire.',
+   predator:'Centinaia di voci hanno imparato a cacciare. Lo streamer non è più al sicuro.',
+   witness:'Nessuno ha mosso il primo passo. La porta rimane aperta e la creatura osserva.'
+ };
+ byId('headline').textContent=headlines[roundResult.phase];
+ byId('caption').textContent=explanations[roundResult.phase]+' Premi Ricomincia per una nuova partita.';
+ byId('stateTag').textContent='FINE ROUND · '+roundResult.phase.toUpperCase();
+ announcer(roundResult.title+' — '+roundResult.description);
+}
+function updateHUD(){
+ byId('count').textContent=presences;
+ byId('intent').textContent=mode==='protect'?'♥':mode==='hunt'?'⚠':'?';
+ byId('trustLabel').textContent=Math.round(trust*100)+'%';
+ byId('fearLabel').textContent=Math.round(fear*100)+'%';
+ byId('trustFill').style.width=(trust*100)+'%';
+ byId('fearFill').style.width=(fear*100)+'%';
+ byId('mood').textContent=mode==='protect'?'Vuole proteggere lo streamer. Le sue braccia diventano uno scudo.':mode==='hunt'?'Sente l’istinto della caccia. Le sue braccia diventano artigli.':'Ascolta. Non sa ancora cosa diventare.';
+ byId('stateTag').textContent=mode==='protect'?'GUARDIANO EMERGENTE':mode==='hunt'?'PREDATORE EMERGENTE':'SENTENZA SOSPESA';
+}
+const path=(pts,stroke,width,alpha=1)=>{
+ ctx.globalAlpha=alpha;ctx.strokeStyle=stroke;ctx.lineWidth=width;ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();ctx.moveTo(pts[0][0],pts[0][1]);
+ for(let i=1;i<pts.length;i++)ctx.lineTo(pts[i][0],pts[i][1]);ctx.stroke();ctx.globalAlpha=1;
+};
+function ellipse(x,y,rx,ry,color,alpha=1){ctx.fillStyle=color;ctx.globalAlpha=alpha;ctx.beginPath();ctx.ellipse(x,y,rx,ry,0,0,TAU);ctx.fill();ctx.globalAlpha=1;}
+function sky(){
+ let grad=ctx.createLinearGradient(0,0,0,H);grad.addColorStop(0,'#070b1b');grad.addColorStop(.55,'#172036');grad.addColorStop(1,'#19182a');ctx.fillStyle=grad;ctx.fillRect(0,0,W,H);
+ ellipse(880,177,390,240,'#3c5076',.06);
+ for(let i=0;i<170;i++){
+   let x=rngSeed(i*7)*W,y=rngSeed(i*11)*430,r=.4+rngSeed(i*23)*1.2;
+   ellipse(x,y,r,r,'#c7deef',.15+.4*Math.sin(time*.3+i)*.5+.25);
+ }
+ ctx.save();
+ for(let j=0;j<4;j++){let gx=100+j*265,gy=190+(j%2)*25;let fog=ctx.createRadialGradient(gx,gy,5,gx,gy,190);fog.addColorStop(0,'rgba(107,106,159,.10)');fog.addColorStop(1,'transparent');ctx.fillStyle=fog;ctx.fillRect(gx-200,gy-200,400,400);}
+ ctx.restore();
+ for(let i=0;i<buildings.length;i++){
+  let b=buildings[i],top=463-b.h;
+  ctx.fillStyle=i%2?'#101827':'#111a2c';ctx.fillRect(b.x,top,b.w,b.h);
+  ctx.fillStyle='#080f20';ctx.fillRect(b.x+6,top+9,b.w-12,3);
+  ctx.strokeStyle='#30465d50';ctx.lineWidth=1;ctx.strokeRect(b.x,top,b.w,b.h);
+  for(let row=0;row<Math.floor((b.h-45)/43);row++)for(let col=0;col<Math.floor((b.w-20)/36);col++){
+    let wx=b.x+15+col*36,wy=top+23+row*43,lit=rngSeed(i*301+row*37+col*17);
+    ctx.fillStyle=(lit>.68||Math.sin(time*.7+row+i)>0.95)?'rgba(149,241,225,.19)':'#1c2b40';
+    ctx.fillRect(wx,wy,15,23);
+    ctx.fillStyle='#95deda';ctx.globalAlpha=lit>.74?.45:.09;ctx.fillRect(wx+7,wy+4,2,8);ctx.globalAlpha=1;
+  }
+ }
+ ctx.fillStyle='#121725';ctx.fillRect(0,460,W,120);
+ let ground=ctx.createLinearGradient(0,460,0,580);ground.addColorStop(0,'#263041');ground.addColorStop(1,'#0b111d');ctx.fillStyle=ground;ctx.fillRect(0,461,W,119);
+ ctx.fillStyle='#8b9eaa2b';ctx.fillRect(0,470,W,1);
+ for(let j=0;j<8;j++){
+  let x=j*180+25+15*Math.sin(time*.15);
+  ctx.fillStyle='#98bdd716';ctx.beginPath();ctx.moveTo(x,470);ctx.lineTo(x-25,580);ctx.lineTo(x+25,580);ctx.closePath();ctx.fill();
+ }
+ for(let j=0;j<25;j++){ellipse(j*51,520+rngSeed(j*7)*50,2,.6,'#6b8496',.14);}
+}
+function makeCreature(){
+ const cX=760+Math.sin(time*.55)*6,cY=265+Math.sin(time*1.5)*7,aggressive=mode==='hunt',guard=mode==='protect';
+ const color=aggressive?'#ff83ad':guard?'#a5ffde':'#c2b7ff';
+ const pulse=(Math.sin(time*3)+1)*.5;
+ const awake=clamp((time-.6)/4.8);
+ const magnitude=clamp(presences/160);
+ let bodyW=45+78*magnitude,bodyH=45+93*magnitude;
+ const left=guard?335:aggressive?225:470, right=guard?580:1050;
+ ctx.save();
+ ctx.globalAlpha=(.11+awake*.25);
+ let glow=ctx.createRadialGradient(cX,cY,10,cX,cY,270);
+ glow.addColorStop(0,aggressive?'#cb4e84aa':guard?'#4eeba0a4':'#7363b0aa');glow.addColorStop(1,'transparent');
+ ctx.fillStyle=glow;ctx.fillRect(cX-300,cY-300,600,600);ctx.restore();
+ // Tendrils bend differently when crowd turns protective or hostile.
+ for(let arm=0;arm<6;arm++){
+   let s=arm%2===0?-1:1,k=Math.floor(arm/2),sx=cX+s*bodyW*.64,sy=cY-20+k*49;
+   let ex=arm%2===0?left+(k-1)*40:right-(k-1)*30;
+   let ey=guard?(386-k*32):aggressive?(392-k*50):(202+k*55);
+   ctx.save();ctx.strokeStyle=color;ctx.globalAlpha=.14+awake*.28;ctx.lineWidth=10-k*2;ctx.shadowBlur=16;ctx.shadowColor=color;
+   ctx.beginPath();ctx.moveTo(sx,sy);ctx.bezierCurveTo(sx+s*120,sy-70+Math.sin(time*1.1+k)*30,ex-s*100,ey-90,ex,ey);ctx.stroke();ctx.restore();
+   ctx.beginPath();ctx.strokeStyle=color;ctx.globalAlpha=.36;ctx.lineWidth=1.3;ctx.moveTo(ex,ey);ctx.lineTo(ex-11,ey+14);ctx.moveTo(ex,ey);ctx.lineTo(ex+12,ey+12);ctx.stroke();ctx.globalAlpha=1;
+ }
+ ellipse(cX,cY,bodyW,bodyH,color,.044+awake*.042);
+ // An actual collection of independent spectator bodies, not a static sprite.
+ const n=souls.length;
+ for(let i=0;i<n;i++){
+  let s=souls[i],kind=i%13,angle=i*2.399963,rr=Math.sqrt(((i*37)%997)/997);
+  let tx,ty;
+  if(kind>=10){
+   let arm=Math.floor(i/13)%6,side=arm%2===0?-1:1,k=Math.floor(arm/2);
+   let target=side<0?left+(k-1)*40:right-(k-1)*30;
+   let frac=((i*73)%101)/101;
+   tx=cX+(target-cX)*frac;ty=cY+(k-1)*46*frac+Math.sin(frac*4+time*.8+i)*16*frac;
+  }else{
+   tx=cX+Math.cos(angle)*bodyW*rr*.9;
+   ty=cY+Math.sin(angle)*bodyH*rr;
+  }
+  tx+=Math.sin(time*1.1+s.seed)*3;ty+=Math.cos(time*.86+s.seed)*3;
+  let blend=clamp(awake*.78+.17)*(.80+Math.min(1,n/150)*.22);
+  s.x+=(s.homeX+(tx-s.homeX)*blend-s.x)*s.velocity*2.4;
+  s.y+=(s.homeY+(ty-s.homeY)*blend-s.y)*s.velocity*2.4;
+  let alpha=.28+awake*.65;
+  ellipse(s.x,s.y,s.size*(.7+pulse*.2),s.size*(.7+pulse*.2),i%11===0?'#fff6ee':color,alpha);
+ }
+ if(awake>.22){
+   // Eyes try to track the actual user touch, with a blink.
+   let ax=attention.until>time?attention.x:280,ay=attention.until>time?attention.y:390;
+   let dx=clamp((ax-cX)/450,-1,1)*7,dy=clamp((ay-cY)/450,-1,1)*7;
+   let blink=(Math.sin(time*.78)> .997)? .13:1;
+   for(let side of [-1,1]){
+    let x=cX+side*39,y=cY-30;
+    ctx.save();ctx.shadowBlur=25;ctx.shadowColor=color;
+    ellipse(x,y,15*awake+8, (15*awake+6)*blink,color,.35+awake*.38);
+    ellipse(x,y,8.7,8.7*blink,'#eafafe',awake);
+    ellipse(x+dx,y+dy,4.2,4.2*blink,'#081522',awake);
+    ctx.restore();
+   }
+   ctx.save();ctx.strokeStyle=color;ctx.lineWidth=1.8;ctx.globalAlpha=.40+awake*.5;ctx.beginPath();ctx.arc(cX,cY+26,20,0,Math.PI,aggressive);ctx.stroke();ctx.restore();
+ }
+ if(guard){
+   ctx.save();ctx.strokeStyle='#88ffe7';ctx.globalAlpha=trust*.7;ctx.lineWidth=3;ctx.shadowBlur=24;ctx.shadowColor='#6efdd7';ctx.beginPath();ctx.ellipse(297,398,66+12*pulse,105+16*pulse,0,0,TAU);ctx.stroke();ctx.restore();
+ }
+ if(aggressive){
+   for(let i=0;i<3;i++){path([[cX-85,cY+90+i*16],[cX-180,cY+115+i*30],[cX-310+Math.sin(time*2+i)*20,cY+95+i*48]],color,2.4,.4+.4*fear);}
+ }
+ // Live names orbit the creature so actual characters get a trace of identity.
+ if(score>0&&viewerRegistry.size){
+   ctx.save();ctx.font='10px ui-monospace,monospace';
+   ctx.shadowColor='#020511';ctx.shadowBlur=5;ctx.fillStyle='#ecf7f6';
+   let count=0;
+   for(const viewer of viewerRegistry.values()){
+     if(count++>=12)break;
+     const cell=souls[viewer.soulIndex];
+     if(cell)ctx.fillText(viewer.label,cell.x+7,cell.y-6);
+   }
+   ctx.restore();
+ }
+ if(score>0){ctx.save();ctx.font='11px ui-monospace,monospace';ctx.fillStyle=color;ctx.globalAlpha=.82;ctx.fillText(''+presences+' COSCIENZE · '+(guard?'PROTEZIONE':aggressive?'CACCIA':'CURIOSITÀ'),cX-88,cY-bodyH-36);ctx.restore();}
+}
+function drawHuman(){
+ let fleeing=mode==='hunt',safe=mode==='protect';
+ const x=300+(safe?35:fleeing?-55:0)+Math.sin(time*.45)*6,y=465;
+ ctx.save();
+ let light=ctx.createRadialGradient(x+40,y-72,8,x+120,y-130,250);
+ light.addColorStop(0,'rgba(255,239,182,.15)');light.addColorStop(1,'transparent');
+ ctx.fillStyle=light;ctx.beginPath();ctx.moveTo(x+15,y-60);ctx.lineTo(x+520,y-300);ctx.lineTo(x+430,y-20);ctx.closePath();ctx.fill();
+ ctx.shadowColor='#a9c6c6';ctx.shadowBlur=10;
+ ellipse(x,y-73,13,15,'#c5cad1',1);
+ path([[x,y-57],[x-2,y-16]],'#bac5d5',10);
+ path([[x-2,y-17],[x-10,y+5]],'#627c9c',7);
+ path([[x+1,y-17],[x+15,y+6]],'#627c9c',7);
+ path([[x-4,y-48],[x+17,y-30]],'#7f9cae',6);
+ ellipse(x+21,y-29,5,4,'#fff1ca');
+ path([[x-4,y-51],[x-20,y-35]],'#7f9cae',6);
+ ctx.restore();
+ ctx.fillStyle='#07101dca';ctx.strokeStyle=mode==='hunt'?'#ff7b9f82':'#a9e7df70';ctx.lineWidth=1;ctx.beginPath();ctx.roundRect(95,106,400,74,13);ctx.fill();ctx.stroke();
+ ctx.font='bold 12px ui-monospace,monospace';ctx.fillStyle='#9af8e7';ctx.fillText('STREAMEЯ • CAMERA 01',112,128);
+ ctx.font='16px ui-sans-serif,system-ui';ctx.fillStyle='#f2f6fa';
+ let line=mode==='hunt'?'«No. No, no… sta venendo verso di me!»':mode==='protect'?'«Aspetta… mi sta PROTEGGENDO?»':'«Ragazzi… sono io o mi sta fissando?»';
+ ctx.fillText(line,112,156);
+}
+function particles(){
+ for(let i=ripples.length-1;i>=0;i--){
+  let p=ripples[i];p.life-=.018;
+  ctx.save();ctx.strokeStyle=p.color;ctx.globalAlpha=clamp(p.life*.5);ctx.lineWidth=2;ctx.beginPath();ctx.arc(p.x,p.y,5+(1.4-p.life)*100,0,TAU);ctx.stroke();ctx.restore();
+  if(p.life<=0)ripples.splice(i,1);
+ }
+ for(let i=sparks.length-1;i>=0;i--){let s=sparks[i];s.x+=s.vx;s.y+=s.vy;s.life-=.02;ellipse(s.x,s.y,2,2,s.c,s.life);if(s.life<=0)sparks.splice(i,1);}
+}
+function paint(){
+ const ratio=Math.min(window.devicePixelRatio||1,2);
+ if(canvas.width!==Math.floor(1100*ratio)||canvas.height!==Math.floor(580*ratio)){
+  canvas.width=Math.floor(1100*ratio);canvas.height=Math.floor(580*ratio);
+ }
+ ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,W,H);
+ sky();drawHuman();makeCreature();particles();
+ if(roundFinished&&roundResult){
+   const color=roundResult.phase==='guardian'?'#9cffe5':roundResult.phase==='predator'?'#ff8ca3':'#c2b7ff';
+   ctx.save();
+   const pulse=(1+Math.sin(time*1.4))*.5;
+   ctx.fillStyle='#070d1be9';ctx.strokeStyle=color;ctx.lineWidth=2;
+   ctx.fillRect(190,195,720,145);ctx.strokeRect(190,195,720,145);
+   ctx.shadowColor=color;ctx.shadowBlur=20;
+   ctx.fillStyle=color;ctx.textAlign='center';ctx.font='bold 32px ui-sans-serif,system-ui';
+   const label=roundResult.phase==='guardian'?'IL GUARDIANO':roundResult.phase==='predator'?'IL PREDATORE':'IL TESTIMONE';
+   ctx.fillText(label,550,260);
+   ctx.shadowBlur=0;ctx.fillStyle='#cad6e9';ctx.font='16px ui-sans-serif,system-ui';
+   ctx.fillText('Le scelte della chat hanno deciso il destino.',550,297);
+   ctx.strokeStyle=color;ctx.globalAlpha=.14+.12*pulse;ctx.lineWidth=7;ctx.strokeRect(184,189,732,157);
+   ctx.restore();
+ }
+
+ if(raidFlash>0){ctx.fillStyle='#efffff';ctx.globalAlpha=raidFlash*.14;ctx.fillRect(0,0,W,H);ctx.globalAlpha=1;raidFlash*=.89;}
+ ctx.font='12px ui-monospace,monospace';ctx.fillStyle='#d3e3ef99';ctx.fillText('CITY: BLACKWELL / SIGNAL 04',26,528);ctx.fillText('THE CHAT IS INSIDE',872,528);
+}
+function tick(stamp){
+ if(!last)last=stamp;let dt=Math.min(.07,(stamp-last)/1000);last=stamp;time+=dt;
+ autoWait-=dt;
+ if(autoplay&&autoWait<=0){
+   let entry=scenarios[Math.floor(Math.random()*scenarios.length)];
+   receive(entry[0],entry[1]);autoWait=3.5+Math.random()*2;
+ }
+ if(time>8&&storyBeat<0){storyBeat=0;announcer('Ragazzi… io non sono un mostro. SONO VOI.');}
+ if(time>=60&&!roundFinished)finishRound();
+ if(time>19&&storyBeat===0){storyBeat=1;byId('headline').textContent='LA CITTÀ STA CAMBIANDO IDEA.';byId('caption').textContent='Ogni nuovo messaggio può trasformare il protettore in predatore.';}
+ let mm=Math.floor(time/60),ss=Math.floor(time%60);
+ byId('timer').textContent=String(mm).padStart(2,'0')+':'+String(ss).padStart(2,'0')+' / 01:00';
+ if(time-lastBeat>1.6){lastBeat=time;trust=clamp(trust-.006);fear=clamp(fear-.007);updateHUD();}
+ paint();requestAnimationFrame(tick);
+}
+const screenPos=(event)=>{const r=canvas.getBoundingClientRect();return{x:(event.clientX-r.left)*W/r.width,y:(event.clientY-r.top)*H/r.height};};
+canvas.addEventListener('pointerdown',(e)=>{
+ const pos=screenPos(e);attention={x:pos.x,y:pos.y,until:time+4};ripples.push({x:pos.x,y:pos.y,life:1,color:'#b9ffe6'});
+ if(presences<650){presences+=2;ensureSouls(presences,true);}
+ byId('headline').textContent='TI HA VISTO.';
+ byId('caption').textContent='Hai attirato il suo sguardo. Scrivi qualcosa: capirà se sei amico o minaccia.';
+ updateHUD();
+});
+canvas.addEventListener('pointermove',(e)=>{if(e.buttons)attention={...screenPos(e),until:time+2};});
+byId('chatForm').addEventListener('submit',(event)=>{event.preventDefault();let el=byId('chatInput');let text=el.value.trim();if(text){receive('TU',text,true);el.value='';el.focus();}});
+byId('raid').addEventListener('click',()=>doRaid(150,'simulazione'));
+byId('reset').addEventListener('click',()=>{
+ roundFinished=false;roundResult=null;
+ time=0;last=0;trust=.22;fear=.18;presences=32;score=0;mode='curious';souls=[];ripples=[];sparks=[];raidFlash=0;storyBeat=-1;autoWait=2.5;
+ ensureSouls(presences);viewerRegistry.clear();byId('chatbox').replaceChildren();
+ byId('headline').textContent='C’è qualcosa dietro quelle finestre.';
+ byId('caption').textContent='Gli spettatori iniziano ad arrivare. Scrivi qualcosa o simula un raid.';
+ announcer('Eccomi di nuovo. Ho bisogno delle vostre voci.');
+ updateHUD();
+});
+byId('autoplay').addEventListener('click',()=>{
+ autoplay=!autoplay;byId('autoplay').textContent=autoplay?'Ⅱ Ferma i figuranti':'▶ Avvia i figuranti';autoWait=1.3;
+});
+// Twitch bridge: listen only to server-side verified EventSub messages.
+// Demo commands stay local; no browser token or direct Twitch credentials.
+let live=false;
+const liveSeen=new Set();
+function setStreamStatus(info){
+  const online=info?.mode==='TWITCH'&&info?.connected===true;
+  live=online;
+  const label=byId('sourceStatus');
+  if(!label)return;
+  label.textContent=online?'● TWITCH · CHAT REALE':info?.mode==='TWITCH'?'● TWITCH · IN ATTESA':'● DEMO · NON TWITCH LIVE';
+  label.style.color=online?'#9cfff1':'#ffc587';
+  if(online&&autoplay){autoplay=false;byId('autoplay').textContent='▶ Avvia i figuranti';}
+}
+if('EventSource' in window){
+  const source=new EventSource('/events');
+  source.addEventListener('status',event=>{
+    try{setStreamStatus(JSON.parse(event.data));}catch{}
+  });
+  source.addEventListener('chat',event=>{
+    try{
+      const message=JSON.parse(event.data);
+      if(message.source!=='twitch'||!message.messageId||typeof message.text!=='string')return;
+      if(liveSeen.has(message.messageId))return;
+      liveSeen.add(message.messageId);
+      if(liveSeen.size>2048)liveSeen.delete(liveSeen.values().next().value);
+      receive(message.user||'viewer',message.text,false,message.userId||message.user);
+      byId('headline').textContent='LO SPETTATORE '+String(message.user||'viewer').slice(0,24).toUpperCase()+' È ENTRATO NEL CORPO.';
+    }catch{}
+  });
+  source.addEventListener('raid',event=>{
+    try{
+      const payload=JSON.parse(event.data);
+      if(payload.source==='twitch')doRaid(payload.viewers,payload.from);
+    }catch{}
+  });
+  source.onerror=()=>{if(live){setStreamStatus({mode:'TWITCH',connected:false});}};
+  window.addEventListener('pagehide',()=>source.close(),{once:true});
+  fetch('/api/status',{signal:AbortSignal.timeout(5000)})
+    .then(r=>r.ok?r.json():null).then(data=>data&&setStreamStatus(data)).catch(()=>{});
+}
+announcer('All’inizio ero soltanto una stanza piena di occhi…');
+audienceItem('theWatcher','Qualcuno ci vede?');
+updateHUD();requestAnimationFrame(tick);
+})();
+</script>
+</body></html>

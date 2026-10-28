@@ -1,0 +1,10 @@
+{
+ "name":"the-crowd-twitch",
+ "version":"0.3.0",
+ "private":true,
+ "type":"module",
+ "description":"THE CROWD: the chat IS the monster - independent Twitch EventSub experiment.",
+ "engines":{"node":">=24"},
+ "scripts":{"start":"node server.mjs","test":"node --test tests/*.test.mjs"},
+ "license":"UNLICENSED"
+}

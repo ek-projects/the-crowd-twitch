@@ -1,0 +1,9 @@
+.env
+.env.*
+!.env.example
+*.log
+node_modules/
+*.zip
+codex-*.jsonl
+codex-*.stderr
+codex-*.exit
