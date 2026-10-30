@@ -40,11 +40,10 @@ Simulated events are not real Twitch EventSub events.
 
 9
 00:01:18,000 --> 00:01:28,000
-The game can be displayed as a broadcaster scene.
-A real Twitch feed requires authorized EventSub setup.
+BUILT WITH OPENAI CODEX.
+The ending evaluator is in crowd-ending.mjs.
 
 10
 00:01:28,000 --> 00:01:40,100
-BUILT WITH OPENAI CODEX.
-The ending logic is in crowd-ending.mjs.
+Three possible results: guardian, predator, and witness.
 Codex session ID is documented in the repository.
