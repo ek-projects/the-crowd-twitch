@@ -41,7 +41,7 @@ The Twitch connection requires a live authorized broadcaster account, applicatio
     node --check twitch.mjs
     node --check twitch-login.mjs
 
-Tests do not certify visual/browser behavior or a live Twitch connection. The authentic Codex gameplay session ID is recorded in CODEX_SESSION.txt. Neither a hackathon submission, YouTube video nor a live Twitch demonstration is claimed.
+Tests do not certify visual/browser behavior or a live Twitch connection. The authentic Codex gameplay session ID is recorded in CODEX_SESSION.txt. The hackathon entry was submitted on 2026-10-28. A YouTube video is linked in the Devpost entry; the repository's automated tests do not verify its content, accessibility, or live Twitch footage.
 
 ## Timed gameplay and Codex provenance
 
@@ -53,12 +53,15 @@ The avatar shown is generated within the demo, not an actual human streamer. Bro
 
 ## Hackathon entry
 
-See DEVPOST_SUBMISSION.md for the complete draft and outstanding requirements, and DEMO_VIDEO_SCRIPT.md for the three-minute video storyboard. These documents are not evidence that live Twitch footage exists or the competition entry is final.
+The project description, setup instructions, testing instructions, and Codex evidence are in English. The organizer requested English captions for the linked YouTube video by 2026-11-02 14:00 PT. Video subtitle availability must be confirmed in YouTube Studio; a text document alone cannot satisfy the video's caption requirement.
+
+
+The Codex x TwitchCon Hackathon submission was sent on 2026-10-28 and is visible on Devpost. See DEVPOST_SUBMISSION.md for the English submission details and tester instructions, and DEMO_VIDEO_SCRIPT.md for the planned three-minute demonstration. A submission is not evidence that the live Twitch integration was successfully tested.
 
 ## Online preview and source
 
 - Stable simulated demo: https://ek-projects.github.io/the-crowd-twitch/
 - Public source repository: https://github.com/ek-projects/the-crowd-twitch
-- Devpost project (DRAFT, not submitted): https://devpost.com/software/the-crowd-the-chat-is-the-monster
+- Devpost project (submitted 2026-10-28): https://devpost.com/software/the-crowd-the-chat-is-the-monster
 
 The GitHub Pages site is STATIC and necessarily shows simulated viewers. It does not run the Node EventSub bridge. Run the Node server after Twitch authorization for real chat; do not claim Github Pages demonstrates Twitch integration.
