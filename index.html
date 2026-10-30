@@ -201,7 +201,7 @@ function doRaid(viewers=150,source=""){
  mode=trust>fear+.16?'protect':fear>trust+.13?'hunt':'curious';
  raidFlash=1;attention={x:730,y:285,until:time+5};
  for(let i=0;i<8;i++)ripples.push({x:740,y:260,life:.65+i*.12,color:'#baf9f4'});
- announcer('RAID! '+number+' new voices'+(source?' da '+source:'')+'. MY BODY IS CHANGING.');
+ announcer('RAID! '+number+' new voices'+(source?' from '+source:'')+'. MY BODY IS CHANGING.');
  byId('headline').textContent='SOMEONE BROUGHT AN ENTIRE AUDIENCE.';
  byId('caption').textContent='Watch the new cells enter, the arms grow and the streamer retreat.';
  updateHUD();
@@ -486,8 +486,8 @@ if('EventSource' in window){
   fetch('/api/status',{signal:AbortSignal.timeout(5000)})
     .then(r=>r.ok?r.json():null).then(data=>data&&setStreamStatus(data)).catch(()=>{});
 }
-announcer('All’inizio ero soltanto una stanza piena di occhi…');
-audienceItem('theWatcher','Qualcuno ci vede?');
+announcer('At first, I was just a room full of eyes…');
+audienceItem('theWatcher','Can anybody see us?');
 updateHUD();requestAnimationFrame(tick);
 })();
 </script>
