@@ -1,11 +1,11 @@
-# THE CROWD — Devpost submission packet (2026-10-28)
+# THE CROWD — Devpost submission and English review (updated 2026-10-30)
 
 Hackathon: Codex x TwitchCon Hackathon
 Project ID: 1514787
-Draft submission ID: 1269212
+Submission ID: 1269212
 Devpost project page: https://devpost.com/software/the-crowd-the-chat-is-the-monster
 Deadline: 2026-11-02 22:00 UTC (23:00 Italy)
-Status: DRAFT, not submitted.
+Status: SUBMITTED on 2026-10-28 (verified from authenticated Devpost project). Organizer's English-language materials review received 2026-10-30; final eligibility is not confirmed.
 
 ## Known truthful form answers
 
@@ -17,18 +17,16 @@ Status: DRAFT, not submitted.
 "We used OpenAI Codex to generate the deterministic gameplay-ending evaluator in crowd-ending.mjs and incorporated it into the 60-second browser game. The archived Codex session ID and code are included. The Twitch integration is a Node.js server bridge using Twitch EventSub WebSockets for channel.chat.message and channel.raid, with user OAuth validation and same-origin SSE events to the canvas scene. Automated tests simulate Twitch events, verify deduplication and subscriptions, and check SSE delivery. Actual-channel connectivity awaits broadcaster authorization; we do not claim live testing."
 - 29291 Streamer and community usage:
 "The streamer adds THE CROWD as a browser scene. Viewers type natural-language chat messages; a speaker can become a named cell in the collective creature. Protective or hostile messages alter the creature's trust, fear and final behavior. Twitch raid notifications can introduce the viewer count as new cells, visibly changing the monster. Synthetic mode allows instant exploration without an account."
-- 29292 Personal skill development: participant's subjective answer REQUIRED.
-- 29293 Future Codex likelihood: participant's subjective answer REQUIRED.
-- 29294 Age majority: participant previously confirmed age >=18.
-- 29295 Eligible jurisdiction: participant states legal residence in Italy.
-- 29296 Not a sponsor employee: participant declaration REQUIRED.
-- Video URL: REQUIRED. Under 3 min, hosted on public/unlisted YouTube, with actual Twitch functionality and Codex proof. NOT PROVIDED.
+- 29292–29296: Required survey/declarations are part of the submitted entry; their saved values have not been re-read by this document's updater. Do not infer or change them.
+- Video URL on the project: https://youtu.be/eBjzl7KgX90. Its English captions, actual footage, length, and public playback have not been independently verified.
 - Website: https://ek-projects.github.io/the-crowd-twitch/ (permanent STATIC simulated demo; does not receive Twitch chat).
 
-## Blocked actions needed for final submission
-1. DONE: Authorized GitHub, created fresh public repository ek-projects/the-crowd-twitch, pushed source; .env was not included.
-2. Register a Twitch developer application at https://dev.twitch.tv/console/apps. Use the PUBLIC Client ID to launch node twitch-login.mjs CLIENT_ID. Log in and authorize on your own Twitch browser, never paste access tokens.
-3. Record actual Twitch interaction, then upload a <=179-second demo to YouTube. DEMO_VIDEO_SCRIPT.md contains storyboard and narration.
-4. Supply subjective survey answers and confirm employer eligibility, then submit the draft. A draft is not an entry.
+## Organizer request received 2026-10-30
 
-Do not claim Submitted unless Devpost returns status Submitted and a real timestamp.
+The organizer requested an English translation of all non-English submitted materials, English captions that can be enabled for the YouTube demonstration, and a video that shows the project operating on Twitch and how Codex was used. Deadline: 2026-11-02 at 14:00 Pacific Time (23:00 Italy).
+
+The current Devpost project description is already in English, including its testing guidance and Codex provenance. This repository's README is also in English. The outstanding check is in the YouTube video itself: confirm playable English captions and actual Twitch/Codex demonstration; do not represent synthetic EventSub events as a verified live broadcast. If changes to the video are necessary, update the video and the hackathon submission before the deadline.
+
+For a live Twitch test, authorize the broadcaster with https://dev.twitch.tv/console/apps and `node twitch-login.mjs CLIENT_ID`; never disclose OAuth tokens or secrets. The local simulation and mocked integration tests are reproducible without Twitch credentials.
+
+This document records evidence and outstanding checks; it is not proof of organizer approval.
