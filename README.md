@@ -53,7 +53,7 @@ The avatar shown is generated within the demo, not an actual human streamer. Bro
 
 ## Hackathon entry
 
-The project description, setup instructions, testing instructions, and Codex evidence are in English. The organizer requested English captions for the linked YouTube video by 2026-11-02 14:00 PT. Video subtitle availability must be confirmed in YouTube Studio; a text document alone cannot satisfy the video's caption requirement.
+The project description, setup instructions, testing instructions, and Codex evidence are in English. The organizer requested English captions for the linked YouTube video by 2026-11-02 14:00 PT. English caption file for the silent 100-second demo: [THE_CROWD_English_Captions.srt](THE_CROWD_English_Captions.srt). This is a synchronized English explanation/translation of the visible Italian screens. Upload it under the video’s English subtitles in YouTube Studio; a text document alone cannot satisfy the video's caption requirement.
 
 
 The Codex x TwitchCon Hackathon submission was sent on 2026-10-28 and is visible on Devpost. See DEVPOST_SUBMISSION.md for the English submission details and tester instructions, and DEMO_VIDEO_SCRIPT.md for the planned three-minute demonstration. A submission is not evidence that the live Twitch integration was successfully tested.
