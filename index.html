@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#090d17">
-<title>THE CROWD — La chat è il mostro</title>
+<title>THE CROWD — The Chat Is the Monster</title>
 <style>
 :root{--bg:#080b14;--ink:#eff5ff;--muted:#92a1b8;--edge:rgba(165,190,240,.14);--cyan:#9cfff1;--rose:#ff8ba9;--amber:#ffc587}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 65% -20%,#28334c 0%,#111729 35%,var(--bg) 85%);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
@@ -61,15 +61,15 @@ kbd{font-family:inherit;background:#344157;border-radius:4px;padding:2px 6px;col
 </head>
 <body>
 <div class="wrap">
-<header><div class="brand"><div class="glyph">◉</div><div class="brandname">THE CROWD<small>YOU ARE THE CREATURE</small></div></div><div class="topright"><span class="pill" id="sourceStatus"><span class="dot"></span> DEMO · NON TWITCH LIVE</span></div></header>
-<section class="intro"><div><div class="eyebrow">UN ESPERIMENTO SOCIALE GIOCABILE</div><h1>La chat <em>è il mostro.</em></h1><p>Ogni spettatore è una cellula. Ogni messaggio cambia la creatura. Lo streamer non sa se il suo pubblico lo salverà… o lo divorerà.</p></div><div class="stamp">EPISODIO 01<br><strong>La città che ascolta</strong><br>Esperienza interattiva · senza download</div></section>
-<div class="stagewrap"><div class="stagehdr"><span class="livebar"><span class="beat"></span> CAMERA SIMULATA / MESSAGGI LIVE OPZIONALI</span><span id="timer">00:00 / 01:00</span></div><canvas id="world" width="1100" height="580" aria-label="Una città buia, un esploratore e una creatura vivente formata dai messaggi degli spettatori. Tocca la scena per attirarne lo sguardo."></canvas><div class="stagecaption"><div><strong id="headline">C'è qualcosa dietro quelle finestre.</strong><p id="caption">Aspetta che gli spettatori si riuniscano… oppure scrivi subito un messaggio.</p></div><span class="chapter" id="stateTag">SENTENZA SOSPESA</span></div></div>
+<header><div class="brand"><div class="glyph">◉</div><div class="brandname">THE CROWD<small>YOU ARE THE CREATURE</small></div></div><div class="topright"><span class="pill" id="sourceStatus"><span class="dot"></span> DEMO · NOT LIVE ON TWITCH</span></div></header>
+<section class="intro"><div><div class="eyebrow">A PLAYABLE SOCIAL EXPERIMENT</div><h1>Chat <em>is the monster.</em></h1><p>Every viewer is a cell. Every message changes the creature. The streamer does not know if the audience will save them or devour them.</p></div><div class="stamp">EPISODE 01<br><strong>The listening city</strong><br>Interactive experience · no download</div></section>
+<div class="stagewrap"><div class="stagehdr"><span class="livebar"><span class="beat"></span> SIMULATED CAMERA / OPTIONAL LIVE CHAT</span><span id="timer">00:00 / 01:00</span></div><canvas id="world" width="1100" height="580" aria-label="A dark city, an explorer and a living creature formed from viewer messages. Click the scene to attract its attention."></canvas><div class="stagecaption"><div><strong id="headline">There is something behind those windows.</strong><p id="caption">Wait for viewers to gather, or send a message now.</p></div><span class="chapter" id="stateTag">VERDICT PENDING</span></div></div>
 <div class="mainrow">
-<section class="module"><div class="kicker">01 / DAI UNA VOCE ALLA CREATURA</div><h2>Scrivi come se stessi parlando allo streamer.</h2><div class="chatbox" id="chatbox" role="log" aria-live="polite"></div><form class="controls" id="chatForm"><input class="chat-input" id="chatInput" maxlength="160" autocomplete="off" aria-label="Messaggio della chat" placeholder="Es. Proteggilo! · Attaccalo! · Ciao, chi sei?"><button class="send" type="submit">INVIA ↗</button></form><div class="underform">Prova parole normali, non comandi. Tocca anche il mostro nella scena.</div></section>
-<aside class="module"><div class="kicker">02 / UN SOLO CORPO, TANTE VOLONTÀ</div><div class="body-status"><div><div class="number" id="count">32</div><span class="mini">PRESENZE NEL CORPO</span></div><div><div class="number" id="intent">?</div><span class="mini">INTENZIONE COLLETTIVA</span></div></div><div class="meterrow"><span>Fiducia</span><strong id="trustLabel">22%</strong></div><div class="bar"><div class="fill" id="trustFill"></div></div><div class="meterrow"><span>Paura / aggressività</span><strong id="fearLabel">18%</strong></div><div class="bar"><div class="fill fear" id="fearFill"></div></div><div class="mood" id="mood">La creatura si sta svegliando…</div><div class="toolrow"><button id="raid" type="button">⚡ SIMULA UN RAID +150</button><button id="autoplay" type="button">Ⅱ Ferma i figuranti</button><button id="reset" type="button">↺ Ricomincia</button></div></aside>
+<section class="module"><div class="kicker">01 / GIVE THE CREATURE A VOICE</div><h2>Type as if talking to the streamer.</h2><div class="chatbox" id="chatbox" role="log" aria-live="polite"></div><form class="controls" id="chatForm"><input class="chat-input" id="chatInput" maxlength="160" autocomplete="off" aria-label="Chat message" placeholder="E.g. Protect him! · Attack him! · Who are you?"><button class="send" type="submit">SEND ↗</button></form><div class="underform">Use natural language, not commands. Click the creature in the scene too.</div></section>
+<aside class="module"><div class="kicker">02 / ONE BODY, MANY MINDS</div><div class="body-status"><div><div class="number" id="count">32</div><span class="mini">PRESENCES IN THE BODY</span></div><div><div class="number" id="intent">?</div><span class="mini">COLLECTIVE INTENTION</span></div></div><div class="meterrow"><span>Trust</span><strong id="trustLabel">22%</strong></div><div class="bar"><div class="fill" id="trustFill"></div></div><div class="meterrow"><span>Fear / aggression</span><strong id="fearLabel">18%</strong></div><div class="bar"><div class="fill fear" id="fearFill"></div></div><div class="mood" id="mood">The creature is waking up…</div><div class="toolrow"><button id="raid" type="button">⚡ SIMULATE A RAID +150</button><button id="autoplay" type="button">Ⅱ Pause simulated viewers</button><button id="reset" type="button">↺ Restart</button></div></aside>
 </div>
-<div class="help"><span><strong>La parte sorprendente:</strong> anche un messaggio innocuo modifica il corpo e attira lo sguardo del mostro. I messaggi protettivi e aggressivi ne cambiano il comportamento.</span><span><strong>Modalità di prova:</strong> spettatori e raid simulati.<br>Il collegamento reale è indicato in alto quando Twitch è autorizzato.</span></div>
-<footer>THE CROWD · Prototipo esplorativo. Nessuna raccolta di dati personali, chat locale nel browser. Questo esperimento non equivale a un'integrazione Twitch già funzionante.</footer>
+<div class="help"><span><strong>The surprising part:</strong> even a harmless message changes the creature and attracts its attention. Protective or hostile chat changes its behavior.</span><span><strong>Test mode:</strong> simulated viewers and raids.<br>A real connection is indicated at the top when Twitch is authorized.</span></div>
+<footer>THE CROWD · Exploratory prototype. Local browser chat does not collect personal data. This demonstration alone does not prove a working Twitch integration.</footer>
 </div>
 <script>
 (function(){
@@ -131,9 +131,9 @@ const rngSeed=(n)=>{let x=(Math.imul(n+53,1664525)+1013904223)>>>0;return x/4294
 const rand=(a,b)=>a+Math.random()*(b-a);
 const actors=['OrbitKid','frammento_9','itsLuna','NightShift','neonMoth','theWatcher','Jinx42','Raven','Cat.exe','Echo'];
 const scenarios=[
- ['OrbitKid','Cosa sono quegli occhi?'],['itsLuna','ciao piccola creatura'],['Raven','proteggilo, è solo!'],
- ['Jinx42','attaccalo!!'],['NightShift','non fargli male'],['Cat.exe','chi sei davvero?'],
- ['neonMoth','guardalo, vuole parlarti'],['theWatcher','spaventiamolo!'],['Echo','salvalo adesso']
+ ['OrbitKid','What are those eyes?'],['itsLuna','hello little creature'],['Raven','protect him, he is alone!'],
+ ['Jinx42','attack him!!'],['NightShift','please do not hurt him'],['Cat.exe','who are you really?'],
+ ['neonMoth','look at him, he wants to talk'],['theWatcher','scare him!'],['Echo','save him now']
 ];
 const buildings=[
  {x:-20,w:168,h:269},{x:110,w:168,h:340},{x:255,w:125,h:267},{x:348,w:172,h:378},
@@ -157,7 +157,7 @@ const audienceItem=(name,text)=>{
 };
 function announcer(text){
  const el=document.createElement('div');el.className='message special';
- const n=document.createElement('strong');n.textContent='LA CREATURA  ';
+ const n=document.createElement('strong');n.textContent='THE CREATURE  ';
  const v=document.createElement('i');v.textContent=text;el.append(n,v);
  let box=byId('chatbox');box.append(el);
  while(box.childNodes.length>7)box.removeChild(box.firstChild);
@@ -172,8 +172,8 @@ function sentiment(text) {
 }
 function receive(name,text,user=false,viewerId=''){
  text=String(text||'').trim().slice(0,160);if(!text)return;
- if(roundFinished){audienceItem(user?'TU':name,text);return;}
- audienceItem(user?'TU':name,text);score++;
+ if(roundFinished){audienceItem(user?'YOU':name,text);return;}
+ audienceItem(user?'YOU':name,text);score++;
  const emotion=sentiment(text);
  if(emotion==='protect'){trust=clamp(trust+.23);fear=clamp(fear-.07);}
  if(emotion==='hunt'){fear=clamp(fear+.28);trust=clamp(trust-.06);}
@@ -190,20 +190,20 @@ function receive(name,text,user=false,viewerId=''){
  attention={x:mode==='hunt'?245:730,y:260,until:time+2.8};
  raidFlash=Math.max(raidFlash,.15);
  ripples.push({x:755,y:268,life:1.2,color:mode==='hunt'?'#ff849f':'#91ffee'});
- if(user){byId('headline').textContent=emotion==='protect'?'HA CAPITO CHE VUOI AIUTARLO.':emotion==='hunt'?'HA SENTITO LA TUA MINACCIA.':'TI STA GUARDANDO.';byId('caption').textContent='La creatura ha incorporato il tuo messaggio. Guarda il movimento del suo corpo.';}
+ if(user){byId('headline').textContent=emotion==='protect'?'IT KNOWS YOU WANT TO HELP.':emotion==='hunt'?'IT HEARD YOUR THREAT.':'IT IS WATCHING YOU.';byId('caption').textContent='The creature has absorbed your message. Watch its body move.';}
  updateHUD();
 }
 function doRaid(viewers=150,source=""){
- if(roundFinished){announcer('Il destino di questa città è già deciso. Premi Ricomincia per un nuovo capitolo.');return;}
+ if(roundFinished){announcer('The fate of this city has been decided. Press Restart for a new round.');return;}
  const number=Math.min(800,Math.max(1,Math.trunc(Number(viewers)||150)));
  presences=Math.min(800,presences+number);ensureSouls(presences,true);
  fear=clamp(fear+.10);trust=clamp(trust+.035);
  mode=trust>fear+.16?'protect':fear>trust+.13?'hunt':'curious';
  raidFlash=1;attention={x:730,y:285,until:time+5};
  for(let i=0;i<8;i++)ripples.push({x:740,y:260,life:.65+i*.12,color:'#baf9f4'});
- announcer('RAID! '+number+' nuove voci'+(source?' da '+source:'')+'. IL MIO CORPO STA CAMBIANDO.');
- byId('headline').textContent='QUALCUNO HA PORTATO UN INTERO PUBBLICO.';
- byId('caption').textContent='Osserva le cellule entrare, le braccia crescere e lo streamer arretrare.';
+ announcer('RAID! '+number+' new voices'+(source?' da '+source:'')+'. MY BODY IS CHANGING.');
+ byId('headline').textContent='SOMEONE BROUGHT AN ENTIRE AUDIENCE.';
+ byId('caption').textContent='Watch the new cells enter, the arms grow and the streamer retreat.';
  updateHUD();
 }
 function finishRound(){
@@ -211,20 +211,20 @@ function finishRound(){
  roundFinished=true;
  roundResult=evaluateCrowdEnding({trust:Math.round(trust*100),fear:Math.round(fear*100),presences});
  autoplay=false;
- byId('autoplay').textContent='▶ Avvia i figuranti';
+ byId('autoplay').textContent='▶ Start simulated viewers';
  const headlines={
-   guardian:'IL PUBBLICO TI HA SALVATO.',
-   predator:'IL PUBBLICO TI HA TROVATO.',
-   witness:'IL PUBBLICO NON HA DECISO.'
+   guardian:'THE AUDIENCE SAVED YOU.',
+   predator:'THE AUDIENCE FOUND YOU.',
+   witness:'THE AUDIENCE DID NOT DECIDE.'
  };
  const explanations={
-   guardian:'La creatura è diventata una barriera vivente. Lo streamer riesce a uscire.',
-   predator:'Centinaia di voci hanno imparato a cacciare. Lo streamer non è più al sicuro.',
-   witness:'Nessuno ha mosso il primo passo. La porta rimane aperta e la creatura osserva.'
+   guardian:'The creature became a living barrier. The streamer can escape.',
+   predator:'Hundreds of voices have learned to hunt. The streamer is no longer safe.',
+   witness:'No one made the first move. The door remains open and the creature watches.'
  };
  byId('headline').textContent=headlines[roundResult.phase];
- byId('caption').textContent=explanations[roundResult.phase]+' Premi Ricomincia per una nuova partita.';
- byId('stateTag').textContent='FINE ROUND · '+roundResult.phase.toUpperCase();
+ byId('caption').textContent=explanations[roundResult.phase]+' Press Restart to play again.';
+ byId('stateTag').textContent='ROUND OVER · '+roundResult.phase.toUpperCase();
  announcer(roundResult.title+' — '+roundResult.description);
 }
 function updateHUD(){
@@ -234,8 +234,8 @@ function updateHUD(){
  byId('fearLabel').textContent=Math.round(fear*100)+'%';
  byId('trustFill').style.width=(trust*100)+'%';
  byId('fearFill').style.width=(fear*100)+'%';
- byId('mood').textContent=mode==='protect'?'Vuole proteggere lo streamer. Le sue braccia diventano uno scudo.':mode==='hunt'?'Sente l’istinto della caccia. Le sue braccia diventano artigli.':'Ascolta. Non sa ancora cosa diventare.';
- byId('stateTag').textContent=mode==='protect'?'GUARDIANO EMERGENTE':mode==='hunt'?'PREDATORE EMERGENTE':'SENTENZA SOSPESA';
+ byId('mood').textContent=mode==='protect'?'It wants to protect the streamer. Its arms form a shield.':mode==='hunt'?'It feels the urge to hunt. Its arms become claws.':'It listens. It does not yet know what to become.';
+ byId('stateTag').textContent=mode==='protect'?'GUARDIAN EMERGING':mode==='hunt'?'PREDATOR EMERGING':'VERDICT PENDING';
 }
 const path=(pts,stroke,width,alpha=1)=>{
  ctx.globalAlpha=alpha;ctx.strokeStyle=stroke;ctx.lineWidth=width;ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();ctx.moveTo(pts[0][0],pts[0][1]);
@@ -350,7 +350,7 @@ function makeCreature(){
    }
    ctx.restore();
  }
- if(score>0){ctx.save();ctx.font='11px ui-monospace,monospace';ctx.fillStyle=color;ctx.globalAlpha=.82;ctx.fillText(''+presences+' COSCIENZE · '+(guard?'PROTEZIONE':aggressive?'CACCIA':'CURIOSITÀ'),cX-88,cY-bodyH-36);ctx.restore();}
+ if(score>0){ctx.save();ctx.font='11px ui-monospace,monospace';ctx.fillStyle=color;ctx.globalAlpha=.82;ctx.fillText(''+presences+' MINDS · '+(guard?'PROTECTION':aggressive?'HUNT':'CURIOSITY'),cX-88,cY-bodyH-36);ctx.restore();}
 }
 function drawHuman(){
  let fleeing=mode==='hunt',safe=mode==='protect';
@@ -371,7 +371,7 @@ function drawHuman(){
  ctx.fillStyle='#07101dca';ctx.strokeStyle=mode==='hunt'?'#ff7b9f82':'#a9e7df70';ctx.lineWidth=1;ctx.beginPath();ctx.roundRect(95,106,400,74,13);ctx.fill();ctx.stroke();
  ctx.font='bold 12px ui-monospace,monospace';ctx.fillStyle='#9af8e7';ctx.fillText('STREAMEЯ • CAMERA 01',112,128);
  ctx.font='16px ui-sans-serif,system-ui';ctx.fillStyle='#f2f6fa';
- let line=mode==='hunt'?'«No. No, no… sta venendo verso di me!»':mode==='protect'?'«Aspetta… mi sta PROTEGGENDO?»':'«Ragazzi… sono io o mi sta fissando?»';
+ let line=mode==='hunt'?'«No, no, no… it is coming for me!»':mode==='protect'?'«Wait… is it PROTECTING me?»':'«Chat… is it just me or is it watching me?»';
  ctx.fillText(line,112,156);
 }
 function particles(){
@@ -397,10 +397,10 @@ function paint(){
    ctx.fillRect(190,195,720,145);ctx.strokeRect(190,195,720,145);
    ctx.shadowColor=color;ctx.shadowBlur=20;
    ctx.fillStyle=color;ctx.textAlign='center';ctx.font='bold 32px ui-sans-serif,system-ui';
-   const label=roundResult.phase==='guardian'?'IL GUARDIANO':roundResult.phase==='predator'?'IL PREDATORE':'IL TESTIMONE';
+   const label=roundResult.phase==='guardian'?'THE GUARDIAN':roundResult.phase==='predator'?'THE PREDATOR':'THE WITNESS';
    ctx.fillText(label,550,260);
    ctx.shadowBlur=0;ctx.fillStyle='#cad6e9';ctx.font='16px ui-sans-serif,system-ui';
-   ctx.fillText('Le scelte della chat hanno deciso il destino.',550,297);
+   ctx.fillText('The chat choices determined the outcome.',550,297);
    ctx.strokeStyle=color;ctx.globalAlpha=.14+.12*pulse;ctx.lineWidth=7;ctx.strokeRect(184,189,732,157);
    ctx.restore();
  }
@@ -415,9 +415,9 @@ function tick(stamp){
    let entry=scenarios[Math.floor(Math.random()*scenarios.length)];
    receive(entry[0],entry[1]);autoWait=3.5+Math.random()*2;
  }
- if(time>8&&storyBeat<0){storyBeat=0;announcer('Ragazzi… io non sono un mostro. SONO VOI.');}
+ if(time>8&&storyBeat<0){storyBeat=0;announcer('Chat… I am not a monster. I AM YOU.');}
  if(time>=60&&!roundFinished)finishRound();
- if(time>19&&storyBeat===0){storyBeat=1;byId('headline').textContent='LA CITTÀ STA CAMBIANDO IDEA.';byId('caption').textContent='Ogni nuovo messaggio può trasformare il protettore in predatore.';}
+ if(time>19&&storyBeat===0){storyBeat=1;byId('headline').textContent='THE CITY IS CHANGING ITS MIND.';byId('caption').textContent='Every new message can turn the protector into a predator.';}
  let mm=Math.floor(time/60),ss=Math.floor(time%60);
  byId('timer').textContent=String(mm).padStart(2,'0')+':'+String(ss).padStart(2,'0')+' / 01:00';
  if(time-lastBeat>1.6){lastBeat=time;trust=clamp(trust-.006);fear=clamp(fear-.007);updateHUD();}
@@ -427,24 +427,24 @@ const screenPos=(event)=>{const r=canvas.getBoundingClientRect();return{x:(event
 canvas.addEventListener('pointerdown',(e)=>{
  const pos=screenPos(e);attention={x:pos.x,y:pos.y,until:time+4};ripples.push({x:pos.x,y:pos.y,life:1,color:'#b9ffe6'});
  if(presences<650){presences+=2;ensureSouls(presences,true);}
- byId('headline').textContent='TI HA VISTO.';
- byId('caption').textContent='Hai attirato il suo sguardo. Scrivi qualcosa: capirà se sei amico o minaccia.';
+ byId('headline').textContent='IT HAS SEEN YOU.';
+ byId('caption').textContent='You got its attention. Send a message: it will sense if you are friend or threat.';
  updateHUD();
 });
 canvas.addEventListener('pointermove',(e)=>{if(e.buttons)attention={...screenPos(e),until:time+2};});
-byId('chatForm').addEventListener('submit',(event)=>{event.preventDefault();let el=byId('chatInput');let text=el.value.trim();if(text){receive('TU',text,true);el.value='';el.focus();}});
-byId('raid').addEventListener('click',()=>doRaid(150,'simulazione'));
+byId('chatForm').addEventListener('submit',(event)=>{event.preventDefault();let el=byId('chatInput');let text=el.value.trim();if(text){receive('YOU',text,true);el.value='';el.focus();}});
+byId('raid').addEventListener('click',()=>doRaid(150,'simulation'));
 byId('reset').addEventListener('click',()=>{
  roundFinished=false;roundResult=null;
  time=0;last=0;trust=.22;fear=.18;presences=32;score=0;mode='curious';souls=[];ripples=[];sparks=[];raidFlash=0;storyBeat=-1;autoWait=2.5;
  ensureSouls(presences);viewerRegistry.clear();byId('chatbox').replaceChildren();
- byId('headline').textContent='C’è qualcosa dietro quelle finestre.';
- byId('caption').textContent='Gli spettatori iniziano ad arrivare. Scrivi qualcosa o simula un raid.';
- announcer('Eccomi di nuovo. Ho bisogno delle vostre voci.');
+ byId('headline').textContent='There is something behind those windows.';
+ byId('caption').textContent='Viewers are arriving. Send a message or simulate a raid.';
+ announcer('I am back. I need your voices.');
  updateHUD();
 });
 byId('autoplay').addEventListener('click',()=>{
- autoplay=!autoplay;byId('autoplay').textContent=autoplay?'Ⅱ Ferma i figuranti':'▶ Avvia i figuranti';autoWait=1.3;
+ autoplay=!autoplay;byId('autoplay').textContent=autoplay?'Ⅱ Pause simulated viewers':'▶ Start simulated viewers';autoWait=1.3;
 });
 // Twitch bridge: listen only to server-side verified EventSub messages.
 // Demo commands stay local; no browser token or direct Twitch credentials.
@@ -455,9 +455,9 @@ function setStreamStatus(info){
   live=online;
   const label=byId('sourceStatus');
   if(!label)return;
-  label.textContent=online?'● TWITCH · CHAT REALE':info?.mode==='TWITCH'?'● TWITCH · IN ATTESA':'● DEMO · NON TWITCH LIVE';
+  label.textContent=online?'● TWITCH · REAL CHAT':info?.mode==='TWITCH'?'● TWITCH · WAITING':'● DEMO · NOT LIVE ON TWITCH';
   label.style.color=online?'#9cfff1':'#ffc587';
-  if(online&&autoplay){autoplay=false;byId('autoplay').textContent='▶ Avvia i figuranti';}
+  if(online&&autoplay){autoplay=false;byId('autoplay').textContent='▶ Start simulated viewers';}
 }
 if('EventSource' in window){
   const source=new EventSource('/events');
@@ -472,7 +472,7 @@ if('EventSource' in window){
       liveSeen.add(message.messageId);
       if(liveSeen.size>2048)liveSeen.delete(liveSeen.values().next().value);
       receive(message.user||'viewer',message.text,false,message.userId||message.user);
-      byId('headline').textContent='LO SPETTATORE '+String(message.user||'viewer').slice(0,24).toUpperCase()+' È ENTRATO NEL CORPO.';
+      byId('headline').textContent='VIEWER '+String(message.user||'viewer').slice(0,24).toUpperCase()+' HAS JOINED THE BODY.';
     }catch{}
   });
   source.addEventListener('raid',event=>{
